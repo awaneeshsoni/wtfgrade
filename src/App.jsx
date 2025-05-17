@@ -1,14 +1,15 @@
-// src/App.js
+
 import React, { useState, useEffect } from 'react';
 
-// Define grade points (customize as needed for your institution)
 const gradePoints = {
+  'A+': 10,
   'A': 10,
   'A-': 9,
   'B': 8,
   'B-': 7,
   'C': 6,
   'C-': 5,
+  'F': 0,
 };
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
 
   const handleAddCourse = () => {
     setCourses([...courses, { id: Date.now(), grade: '', credit: '' }]);
-    setSpi(null); // Reset SPI when courses change
+    setSpi(null); 
     setError('');
   };
 
@@ -28,14 +29,14 @@ function App() {
         course.id === id ? { ...course, [field]: value } : course
       )
     );
-    setSpi(null); // Reset SPI when courses change
+    setSpi(null); 
     setError('');
   };
 
   const handleRemoveCourse = (id) => {
     if (courses.length > 1) {
       setCourses(courses.filter((course) => course.id !== id));
-      setSpi(null); // Reset SPI when courses change
+      setSpi(null); 
       setError('');
     } else {
       setError("You must have at least one course.");
@@ -86,17 +87,15 @@ function App() {
     }
 
     if (totalCredits === 0) {
-      // This case should ideally be caught by individual credit validation
       setError("Total credits cannot be zero. Please enter valid credits.");
       setSpi(null);
       return;
     }
 
     const calculatedSpi = totalGradePointsProduct / totalCredits;
-    setSpi(calculatedSpi.toFixed(2)); // Format to 2 decimal places
+    setSpi(calculatedSpi.toFixed(2)); 
   };
 
-  // Effect to clear SPI if courses are empty after a removal or init
   useEffect(() => {
     if (courses.length === 0 || (courses.length === 1 && courses[0].grade === '' && courses[0].credit === '')) {
       setSpi(null);
@@ -182,7 +181,7 @@ function App() {
         )}
 
         <footer className="mt-10 text-center text-xs text-slate-400">
-          <p>Built with React & Tailwind CSS. Keep Learning!</p>
+          <p>Built with Frustration & Insomnia. Keep Suffering!</p>
         </footer>
       </div>
     </div>
